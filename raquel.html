@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarjeta Creativa Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #1f89cb;
+      font-family: 'Poppins', sans-serif;
+      color: #FEE7B5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .titulo-equipo {
+      font-size: 36px;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitulo-equipo {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #ffefcd;
+    }
+
+    .nombreinicio {
+      font-size: 16px;
+      color: #FEE7B5;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .contenedor {
+      width: 600px;
+      height: 350px;
+      perspective: 1200px;
+      position: relative;
+    }
+
+    .tarjeta {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+    }
+
+    .contenedor:hover .tarjeta {
+      transform: rotateY(180deg);
+    }
+
+    .cara {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+      display: flex;
+    }
+
+    .frente {
+      background: linear-gradient(140deg, #1f5bcb, #0e1d1c);
+      color: #FEE7B5;
+      flex-direction: row;
+    }
+
+    .img-box {
+      width: 45%;
+      height: 100%;
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+      overflow: hidden;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    }
+
+    .info-box {
+      width: 55%;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .nombre {
+      font-size: 28px;
+      color: #FEE7B5;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .cargo {
+      font-size: 16px;
+      color: #FEE7B5;
+      margin-bottom: 25px;
+    }
+
+    .frase {
+      font-size: 14px;
+      font-style: italic;
+      color: #FEE7B5;
+    }
+
+    .reverso {
+      background: linear-gradient(140deg,#1f5bcb, #0e1d1c);
+      color: #FEE7B5;
+      transform: rotateY(180deg);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      backface-visibility: hidden;
+    }
+
+    .contenido-reverso {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 80px;
+    }
+
+    .texto-reverso {
+      width: calc(100% - 240px);
+    }
+
+    .frasereverso {
+      font-size: 14px;
+      font-style: italic;
+      color: #FEE7B5;
+      transform: translateY(-20px);
+    }
+
+    .dato {
+      margin-bottom: 10px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icono {
+      width: 16px;
+      height: 16px;
+      background-color: #FEE7B5;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .img-rectangulo {
+      width: 270px;
+      height: 290px;
+      background-color: #fff;
+      border-top-left-radius: 80px;
+      border-top-right-radius: 80px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .img-rectangulo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .flecha {
+      position: absolute;
+      top: 70%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: #FE8932; /* ACTUALIZADO */
+      cursor: pointer;
+      text-decoration: none;
+      user-select: none;
+      z-index: 2;
+    }
+
+    .flecha.derecha {
+      right: -60px;
+    }
+
+    .flecha.izquierda {
+      left: -60px;
+    }
+
+    @media (max-width: 650px) {
+      .contenedor {
+        width: 90%;
+        height: auto;
+      }
+
+      .tarjeta, .cara {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .img-box {
+        width: 100%;
+        height: 200px;
+        clip-path: none;
+      }
+
+      .img-box img {
+        clip-path: none;
+      }
+
+      .info-box {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .flecha {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="titulo-equipo">Nuestro Equipo Creativo</h1>
+  <p class="subtitulo-equipo">Cada una con una visión única para transformar ideas en experiencias visuales.</p>
+
+  <div class="contenedor">
+    <a href="estefany.html" class="flecha derecha">&#9654;</a>
+    <a href="carolina.html" class="flecha izquierda">&#9664;</a>
+
+    
+    <div class="tarjeta">
+      <!-- Frente -->
+      <div class="cara frente">
+        <div class="img-box">
+          <img src="https://image.cdn2.seaart.me/temp-convert-webp/png/2024-01-15/cmik7ute878c739d9cc0/514d9bcb70ff7c40438fb869e2999efd8fd3c04c_low.webp" alt="Foto">
+        </div>
+        <div class="info-box">
+          <div class="nombre">Raquel Salinas</div>
+          <div class="cargo">Diseñadora Gráfica</div>
+          <div class="frase">“Dibujo mundos donde las emociones tiene forma y color”</div>
+        </div>
+      </div>
+
+      <!-- Reverso -->
+      <div class="cara reverso">
+        <div class="contenido-reverso">
+          <div class="texto-reverso">
+            <h2>Contacto</h2>
+            <div class="frasereverso">Dibujo para recordar que lo simple puede tambien puede ser profundo. ¿Empezamos?</div>
+            <div class="dato"><span class="icono"></span>raquelsalinas808@gmail.com</div>
+            <div class="dato"><span class="icono"></span>@Daylan  — Instagram</div>
+            <div class="dato"><span class="icono"></span>@Raqportfolio — Behance</div>
+          </div>
+          <div class="img-rectangulo">
+            <img src="https://i.pinimg.com/236x/5b/d8/97/5bd8979aba671c92a1415b708e04ecf3.jpg" alt="Sticker" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nombreinicio">Haz click en la flecha dorada para ver las demás presentaciones</div>
+
+</body>
+</html>
